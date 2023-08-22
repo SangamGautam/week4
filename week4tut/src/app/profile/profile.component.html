@@ -1,0 +1,16 @@
+<form (ngSubmit)="onSave()">
+    <label>
+      Username:
+      <input [(ngModel)]="user.username" name="username">
+    </label>
+    <label>
+      Birthdate:
+      <input [(ngModel)]="user.birthdate" name="birthdate">
+    </label>
+    <label>
+      Age:
+      <input [(ngModel)]="user.age" name="age">
+    </label>
+    <button type="submit">Save</button>
+  </form>
+  

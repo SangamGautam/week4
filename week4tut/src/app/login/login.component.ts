@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // Importing Router for navigation
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { Router } from '@angular/router'; // Importing Router for navigation
 export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
-  errorMessage: string | null = null; // For showing error messages
+  errorMessage: string | null = null;
 
   users = [
     { email: 'user1@example.com', password: 'password1' },
@@ -17,23 +17,25 @@ export class LoginComponent implements OnInit {
     { email: 'user3@example.com', password: 'password3' }
   ];
 
-  constructor(private router: Router) { }  // Injecting Router service
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  // Method to handle form submission
   onSubmit(form: any): void {
-    this.login();  // We'll define the logic in the login method
+    this.login();
   }
 
   login(): void {
     const user = this.users.find(u => u.email === this.email && u.password === this.password);
     if (user) {
-      // If a matching user is found, navigate to the account page.
+      // Save user email to session storage
+      sessionStorage.setItem('loggedInUser', this.email);
+
+      // Navigate to the account page
       this.router.navigate(['/account']);
     } else {
-      // If no matching user is found, show an error message.
+      // If no matching user is found, show an error message
       this.errorMessage = 'Invalid email or password';
     }
   }
